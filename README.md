@@ -9,7 +9,7 @@ For user documentation, please see [here](https://backlooper.app/docs/general).
 
 For developer documentation, please continue reading.
 
-The backend code is provided [here](TODO backend code).
+The backend code is provided [here](https://github.com/spmvg/backlooper_backend).
 
 ## Development setup
 Install the frontend locally:

@@ -1,6 +1,6 @@
 {
-  "name": "gui",
-  "version": "0.1.0",
+  "name": "Backlooper",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

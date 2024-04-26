@@ -1,0 +1,18 @@
+# Installation
+
+Backlooper.app consists of 2 parts: the frontend which runs in the browser and the backend which runs on your local machine.
+The [frontend](https://backlooper.app) will try to connect to the backend on your local machine.
+The backend is written in Python and can be started using
+
+```
+python -m backlooper
+```
+
+## Installing the backend
+The backend can be installed like any Python package:
+
+```
+python -m pip install backlooper
+```
+
+Installing Python itself can be done [here](https://www.python.org/downloads/).

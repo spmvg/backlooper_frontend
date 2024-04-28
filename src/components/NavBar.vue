@@ -23,6 +23,14 @@
                 DOCUMENTATION
               </RouterLink>
             </li>
+            <li class="nav-item">
+              <a href="https://github.com/spmvg/backlooper_backend"
+                 class="mx-1
+                 nav-link"
+                 >
+                GITHUB
+              </a>
+            </li>
           </ul>
         </div>
       </nav>

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-6 mx-auto p-2 m-2 md">
+    <div class="col-11 col-md-8 col-lg-6 mx-auto p-2 m-2 md">
       <span v-html="post"></span>
     </div>
   </div>

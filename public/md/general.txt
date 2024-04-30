@@ -38,3 +38,4 @@ Click on the MIDI MAP button and then press the desired MIDI button or slider to
 ## Further information
 * [Installation instructions](https://backlooper.app/docs/install)
 * [Calibration instructions](https://backlooper.app/docs/calibration)
+* [Resolving common issues](https://backlooper.app/docs/issues)

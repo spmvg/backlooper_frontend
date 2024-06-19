@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Documentation from '@/components/Documentation'
+import DocsPage from '@/components/DocsPage'
 import NotFound from '@/components/NotFound'
 import BackLooper from '@/components/BackLooper'
 
@@ -13,8 +13,8 @@ const router = createRouter({
     },
     {
       path: '/docs/:filename',
-      name: 'Documentation',
-      component: Documentation
+      name: 'DocsPage',
+      component: DocsPage
     },
     {
       path: '/:pathMatch(.*)*',

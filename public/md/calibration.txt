@@ -6,9 +6,11 @@ Determining the round trip latency depends on many factors.
 Backlooper.app takes an empirical approach to latency correction.
 
 ## Latency measurement setup
-Latency must be measured before a session using the following setup.
-It is not easy to measure the input latency or the output latency, but the combination of both can be measured.
-The output is directly sent back into the input and the latency is measured.
+Latency must be measured before a session.
+It is not easy to measure the input latency or the output latency individually, but the combination of both can be measured.
+
+To calibrate, connect the output to the input directly.
+The setup looks as follows:
 
 ![Calibration setup with a MIDI controller](../images/calibration_border_width_10.drawio.png "Calibration setup with a MIDI controller")
 
@@ -18,7 +20,7 @@ This process takes approximately 9 seconds.
 Once latency has been measured, the latency is automatically saved.
 
 ## Latency calibration diagram
-To investigate issues with calibration, the latency calibration diagram can be inspected using the SHOW DIAGRAM button.
+To investigate issues with calibration, the latency calibration diagram can be inspected using the "SHOW CALIBRATION DIAGRAM" button.
 The following diagram shows a successful calibration with a latency of 377 ms.
 
 ![Example of a latency calibration diagram](../images/latency_diagram_example.png "Example of a latency calibration diagram")

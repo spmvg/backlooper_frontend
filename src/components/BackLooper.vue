@@ -53,6 +53,35 @@
           <tr>
             <td class="centered-col">
               <span style="font-size: 20pt">
+                LATENCY
+              </span>
+            </td>
+            <td class="left-aligned-col">
+              <form v-on:submit.prevent="submit_latency">
+                <input name="latency_input"
+                       :placeholder="Math.round(1000*latency)"
+                       class="bg-dark m-2"
+                       style="color: white" />
+                <span class="centered-span"> ms </span>
+                <input type="submit" value="SET" class="btn btn-lg btn-dark m-2" />
+                <button type="button"
+                        class="btn btn-lg btn-danger m-2"
+                        v-on:click="calibrate()"
+                        :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
+                  CALIBRATE
+                </button>
+                <button type="button"
+                        class="btn btn-lg btn-dark m-2"
+                        v-on:click="view_calibration_help()">
+                  HELP
+                </button>
+                <!-- TODO: latency correction using a slider? -->
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="centered-col">
+              <span style="font-size: 20pt">
                 CLICKTRACK VOLUME
               </span>
             </td>
@@ -85,8 +114,7 @@
                      id="bpm"
                      @change="set_bpm()"
                      class="m-2"
-                     :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true"
-                     >
+                     :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
               <button type="button"
                       :class="midi_mapping['SET BPM'][0] ? 'btn btn-lg btn-success m-2' : 'btn btn-lg btn-secondary m-2'"
                       v-on:click="set_midi('SET BPM')">
@@ -138,40 +166,24 @@
           <tr>
             <td class="centered-col">
               <span style="font-size: 20pt">
-                LATENCY
+                LATENCY CALIBRATION DIAGRAM
               </span>
             </td>
             <td class="left-aligned-col">
-              <form v-on:submit.prevent="submit_latency">
-                <input name="latency_input"
-                       :placeholder="Math.round(1000*latency)"
-                       class="bg-dark m-2"
-                       style="color: white" />
-                <span class="centered-span"> ms </span>
-                <input type="submit" value="SET" class="btn btn-lg btn-dark m-2" />
-                <button type="button"
-                        class="btn btn-lg btn-danger m-2"
-                        v-on:click="calibrate()"
-                        :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true"
-                        >
-                  CALIBRATE
-                </button>
-                <button type="button"
-                        class="btn btn-lg btn-dark m-2"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#calibrationresultid">
-                  SHOW DIAGRAM
-                </button>
-                <div class="text-center collapse" id="calibrationresultid">
-                  <img class="m-2 img-fluid rounded"
-                       :src="'data:image/png;base64, '+calibration_result"
-                       alt="Calibration result"
-                       v-if="calibration_result"
-                       style="max-width: 75%" />
-                </div>
-                <!-- TODO: latency correction using a slider? -->
-                <!-- TODO: help info button with docs? -->
-              </form>
+              <button type="button"
+                      class="btn btn-lg btn-dark m-2"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#calibrationresultid"
+                      :disabled="!has_triggered_calibration">
+                SHOW CALIBRATION DIAGRAM
+              </button>
+              <div class="text-center collapse" id="calibrationresultid">
+                <img class="m-2 img-fluid rounded"
+                     :src="'data:image/png;base64, '+calibration_result"
+                     alt="Calibration result"
+                     v-if="calibration_result"
+                     style="max-width: 75%" />
+              </div>
             </td>
           </tr>
         </tbody>
@@ -218,7 +230,7 @@
           'TRACK 8': [null, null]
         },
         last_midi: [null, null],
-        info_bar: 'Latency has not yet been set. Please perform calibration.',
+        info_bar: 'Latency has not been set. Please perform calibration to synchronize the audio. Click "HELP" below for more information.',
         track_status_map: {
           EMPTY: "btn btn-lg btn-secondary m-2",
           TRIGGERED: "btn btn-lg btn-warning m-2",
@@ -226,7 +238,8 @@
           PLAYING: "btn btn-lg btn-success m-2",
           STOPPING: "btn btn-lg btn-warning m-2",
           STOPPED: "btn btn-lg btn-primary m-2",
-        }
+        },
+        has_triggered_calibration: false,
       }
     },
     computed: {
@@ -352,7 +365,7 @@
           this.latency = data["latency_seconds"]
         } else if (data["event"] == "major_version") {
           if (this.major_version != data["message"]) {
-            this.info_bar = "Error: this version of the backend on your local machine (v"+data["message"]+") is outdated and incompatible with the frontend (v"+this.major_version+"). Please upgrade the backend to the latest version. See the documentation for more information."
+            this.info_bar = "Error: this version of the backend on your local machine (v" + data["message"] + ") is outdated and incompatible with the frontend (v" + this.major_version + "). Please upgrade the backend to the latest version. See the documentation for more information."
           }
         } else {
           console.log('Unknown message from backend:', event)
@@ -389,7 +402,8 @@
         this.info_bar = "Running calibration, please wait..."
         this.connection.send(JSON.stringify({
           "event": "calibrate",
-        }));
+        }))
+        this.has_triggered_calibration = true
       },
       reset_tracks() {
         this.connection.send(JSON.stringify({
@@ -428,18 +442,20 @@
         }));
         submit_event.target.reset();
         this.info_bar = "Latency set to " + Math.round(this.latency * 1000) + " ms."
+      },
+      view_calibration_help() {
+        window.open('docs/calibration', '_blank')
       }
     }
   }
 </script>
-
 <style scoped>
-table {
-  background-color: rgb(43, 43, 43);
-  width: 100%;
-}
+  table {
+    background-color: rgb(43, 43, 43);
+    width: 100%;
+  }
 
-tr td {
-  border: 2px solid rgb(60, 63, 65);
-}
+  tr td {
+    border: 2px solid rgb(60, 63, 65);
+  }
 </style>

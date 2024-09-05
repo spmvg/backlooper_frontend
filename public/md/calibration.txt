@@ -2,7 +2,7 @@
 There is latency between the input and the output of the audio interface.
 Music is live, so this latency must be corrected for.
 
-Determining the round trip latency depends on many factors.
+The round trip latency depends on many factors.
 Backlooper.app takes an empirical approach to latency correction.
 
 ## Latency measurement setup
@@ -10,6 +10,7 @@ Latency must be measured before a session.
 It is not easy to measure the input latency or the output latency individually, but the combination of both can be measured.
 
 To calibrate, connect the output to the input directly.
+If you are using speakers, it might be sufficient to turn the speakers up a bit.
 The setup looks as follows:
 
 ![Calibration setup with a MIDI controller](../images/calibration_border_width_10.drawio.png "Calibration setup with a MIDI controller")

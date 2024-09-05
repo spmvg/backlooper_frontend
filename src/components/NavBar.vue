@@ -10,24 +10,28 @@
             <li class="nav-item">
               <RouterLink to="/"
                           class="mx-1 nav-link"
-                          routerLinkActive="active"
-                          >
+                          routerLinkActive="active">
                 HOME
               </RouterLink>
             </li>
             <li class="nav-item">
+              <a href="https://github.com/spmvg/backlooper_backend/releases"
+                 class="mx-1
+                 nav-link">
+                DOWNLOAD
+              </a>
+            </li>
+            <li class="nav-item">
               <RouterLink to="/docs/general"
                           class="mx-1
-                          nav-link"
-                          >
+                          nav-link">
                 DOCUMENTATION
               </RouterLink>
             </li>
             <li class="nav-item">
               <a href="https://github.com/spmvg/backlooper_backend"
                  class="mx-1
-                 nav-link"
-                 >
+                 nav-link">
                 GITHUB
               </a>
             </li>

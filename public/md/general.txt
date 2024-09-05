@@ -5,15 +5,10 @@ Audio is always being recorded.
 The last few bars will be played back if you select a track at approximately the first beat of the next bar.
 
 ## Setup
-Backlooper.app consists of 2 parts: the frontend which runs in the browser and the backend which runs on your local machine.
-The [frontend](https://backlooper.app) will try to connect to the backend on your local machine.
-The backend is written in Python and can be started using
+The [releases published on GitHub](https://github.com/spmvg/backlooper_backend/releases) are the preferred installation method.
 
-```
-python -m backlooper
-```
-
-Please refer to the [installation instructions](https://backlooper.app/docs/install) for further information.
+For now, only Windows binaries are available.
+It is possible to install on other platforms as a Python package, please refer to the [installation instructions](https://backlooper.app/docs/install) for more information.
 
 ## Hardware
 An example setup with an audio interface and MIDI controller is as follows.

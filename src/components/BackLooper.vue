@@ -8,7 +8,7 @@
         <span style="font-size: 40pt">{{ number + 1 }}</span>
       </div>
     </div>
-    <div class="col-12 my-1" :style="info_bar.includes('Error') ? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
+    <div class="col-12 my-1" :style="(info_bar.includes('Error') || info_bar.startsWith('Latency has not been set. '))? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
       <span style="font-size:20pt">STATUS <br></span>
       <span style="font-size:13pt">{{ info_bar }}</span>
     </div>
@@ -29,7 +29,8 @@
             <td class="left-aligned-col">
               <button type="button"
                       :class="track_status_map[track.state]"
-                      v-on:click="click_on_track(track)">
+                      v-on:click="click_on_track(track)"
+                      :disabled="latency == 0 ? true : false">
                 TRACK {{ track.track_id + 1 }}
               </button>
               <button type="button"
@@ -57,26 +58,19 @@
               </span>
             </td>
             <td class="left-aligned-col">
-              <form v-on:submit.prevent="submit_latency">
-                <input name="latency_input"
-                       :placeholder="Math.round(1000*latency)"
-                       class="bg-dark m-2"
-                       style="color: white" />
-                <span class="centered-span"> ms </span>
-                <input type="submit" value="SET" class="btn btn-lg btn-dark m-2" />
-                <button type="button"
-                        class="btn btn-lg btn-danger m-2"
-                        v-on:click="calibrate()"
-                        :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
-                  CALIBRATE
-                </button>
-                <button type="button"
-                        class="btn btn-lg btn-dark m-2"
-                        v-on:click="view_calibration_help()">
-                  HELP
-                </button>
-                <!-- TODO: latency correction using a slider? -->
-              </form>
+              <span class="centered-span m-2">{{ Math.round(1000*latency) }} ms</span>
+              <button type="button"
+                      class="btn btn-lg btn-danger m-2"
+                      v-on:click="calibrate()"
+                      :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
+                CALIBRATE
+              </button>
+              <button type="button"
+                      class="btn btn-lg btn-dark m-2"
+                      v-on:click="view_calibration_help()">
+                HELP
+              </button>
+              <!-- TODO: latency correction using a slider? -->
             </td>
           </tr>
           <tr>
@@ -230,7 +224,7 @@
           'TRACK 8': [null, null]
         },
         last_midi: [null, null],
-        info_bar: 'Latency has not been set. Please perform calibration to synchronize the audio. Click "HELP" below for more information.',
+        info_bar: 'Latency has not been set. Please perform calibration to synchronize the audio. Looping is not possible until calibration is successful. Click "HELP" below for more information.',
         track_status_map: {
           EMPTY: "btn btn-lg btn-secondary m-2",
           TRIGGERED: "btn btn-lg btn-warning m-2",
@@ -316,6 +310,8 @@
           return
         }
 
+        if (this.latency == 0) { return }
+
         let track_id = null
         if (this.last_midi_equals('TRACK 1')) {
           track_id = 0
@@ -343,7 +339,7 @@
         return this.last_midi[0] == this.midi_mapping[mapping_name][0] && this.last_midi[1] == this.midi_mapping[mapping_name][1]
       },
       handle_connection_error: function () {
-        this.info_bar = "Error reaching the backend. Is the backend running on your local machine?"
+        this.info_bar = "Error reaching the backend. Is the backend running on your local machine? Check the documentation for more information about resolving common issues."
       },
       handle_message_from_backend: function (event) {
         var data = JSON.parse(event.data)
@@ -365,7 +361,7 @@
           this.latency = data["latency_seconds"]
         } else if (data["event"] == "major_version") {
           if (this.major_version != data["message"]) {
-            this.info_bar = "Error: this version of the backend on your local machine (v" + data["message"] + ") is outdated and incompatible with the frontend (v" + this.major_version + "). Please upgrade the backend to the latest version. See the documentation for more information."
+            this.info_bar = "Error: this version of the backend on your local machine (v" + data["message"] + ") is outdated and incompatible with the frontend (v" + this.major_version + "). Please upgrade the backend to the latest version. Check the documentation for more information."
           }
         } else {
           console.log('Unknown message from backend:', event)
@@ -430,18 +426,6 @@
           "event": "clicktrack_volume",
           "volume": this.clicktrack_volume / 127,
         }));
-      },
-      submit_latency(submit_event) {
-        var value_to_set = parseFloat(submit_event.target.elements.latency_input.value) / 1000
-        if (isNaN(value_to_set)) { return }
-
-        this.latency = value_to_set
-        this.connection.send(JSON.stringify({
-          "event": "latency",
-          "latency_seconds": this.latency,
-        }));
-        submit_event.target.reset();
-        this.info_bar = "Latency set to " + Math.round(this.latency * 1000) + " ms."
       },
       view_calibration_help() {
         window.open('docs/calibration', '_blank')

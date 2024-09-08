@@ -3,7 +3,8 @@
 * To **change the audio device**, adjust the default audio device of the operating system and restart the backend. The default audio device will be taken.
   * On Windows, the audio device is configured in "Settings" → "System" → "Sound".
 * If the **audio device is unavailable**, there might be another application claiming the audio device.
-* If **calibration fails**, inspect the [latency calibration diagram](https://www.backlooper.app/docs/calibration). Make sure that the input receives enough signal.
+* If **calibration fails**, inspect the [latency calibration diagram](https://www.backlooper.app/docs/calibration). Make sure that the input receives enough signal from the output.
+* If the **backend cannot be reached**, check if the backend is running, no firewall is blocking the connection and make sure Javascript is allowed in the browser.
 
 If none of the points above resolve your issue, consider raising an [issue on GitHub](https://github.com/spmvg/backlooper_backend/issues).
 

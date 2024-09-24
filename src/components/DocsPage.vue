@@ -38,67 +38,68 @@ export default {
 </script>
 
 <style scoped>
-.md {
-  text-align: left;
-  background-color: rgb(43, 43, 43);
-}
+  .md {
+    text-align: left;
+    background-color: rgb(43, 43, 43);
+    border-radius: 10px;
+  }
 
-span >>> img {
-  margin: auto;
-  display: block;
-  max-width: 100%;
-}
+  span >>> img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+  }
 
-span >>> p {
-  font-family: "Lora", serif;
-  font-size: 20px;
-}
-span >>> li {
-  font-family: "Lora", serif;
-  font-size: 20px;
-}
-span >>> h1 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> h2 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> h3 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> h4 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> h5 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> h6 {
-  font-family: "Open Sans", sans-serif;
-}
-span >>> em {
-  font-family: "Lora", serif;
-}
-span >>> code {
-  color: #fff;
-  background-color: rgb(56, 58, 60);
-}
-span >>> pre {
-  background-color: rgb(56, 58, 60);
-}
+  span >>> p {
+    font-family: "Lora", serif;
+    font-size: 20px;
+  }
+  span >>> li {
+    font-family: "Lora", serif;
+    font-size: 20px;
+  }
+  span >>> h1 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> h2 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> h3 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> h4 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> h5 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> h6 {
+    font-family: "Open Sans", sans-serif;
+  }
+  span >>> em {
+    font-family: "Lora", serif;
+  }
+  span >>> code {
+    color: #fff;
+    background-color: rgb(56, 58, 60);
+  }
+  span >>> pre {
+    background-color: rgb(56, 58, 60);
+  }
 
-span >>> th {
-  font-family: "Open Sans", sans-serif;
-  padding: 5px;
-}
-span >>> td {
-  color: #fff;
-  padding: 5px;
-}
-span >>> table {
-  background-color: rgb(56, 58, 60);
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+  span >>> th {
+    font-family: "Open Sans", sans-serif;
+    padding: 5px;
+  }
+  span >>> td {
+    color: #fff;
+    padding: 5px;
+  }
+  span >>> table {
+    background-color: rgb(56, 58, 60);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 </style>

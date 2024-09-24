@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="row my-2 py-2">
-      <div class="col-3 align-middle"
+      <div class="col-3 align-middle rounded"
            v-for="number in [...Array(beats).keys()]"
            :key="number"
            :style="[number+1==beat ? 'background-color:rgb(43, 43, 43)' : 'background-color:rgb(60, 63, 65)']">
         <span style="font-size: 40pt">{{ number + 1 }}</span>
       </div>
     </div>
-    <div class="col-12 my-1" :style="(info_bar.includes('Error') || info_bar.startsWith('Latency has not been set. '))? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
+    <div class="col-12 my-1 px-2 rounded"
+         :style="(info_bar.includes('Error') || info_bar.startsWith('Latency has not been set. '))? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
       <span style="font-size:20pt">STATUS <br></span>
       <span style="font-size:13pt">{{ info_bar }}</span>
     </div>
@@ -437,9 +438,14 @@
   table {
     background-color: rgb(43, 43, 43);
     width: 100%;
+    border-radius: 10px;
   }
 
   tr td {
     border: 2px solid rgb(60, 63, 65);
+  }
+
+  .rounded {
+    border-radius: 10px;
   }
 </style>

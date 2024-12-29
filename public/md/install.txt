@@ -1,7 +1,7 @@
 # Installation
 The [releases published on GitHub](https://github.com/spmvg/backlooper_backend/releases) are the preferred installation method.
 
-Windows and Mac OS binaries are available.
+Windows and macOS binaries are available.
 Alternatively, the following section describes how to install Backlooper.app as a Python package.
 
 ## Development installation

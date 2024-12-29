@@ -7,7 +7,7 @@ The last few bars will be played back if you select a track at approximately the
 ## Setup
 The [releases published on GitHub](https://github.com/spmvg/backlooper_backend/releases) are the preferred installation method.
 
-Windows and Mac OS binaries are available.
+Windows and macOS binaries are available.
 It is possible to install on other platforms as a Python package, please refer to the [installation instructions](https://backlooper.app/docs/install) for more information.
 
 ## Hardware

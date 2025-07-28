@@ -354,7 +354,7 @@
           if (this.major_version != data["message"]) {
             this.info_bar = "Error: this version of the backend on your local machine (v" + data["message"] + ") is outdated and incompatible with the frontend (v" + this.major_version + "). Please upgrade the backend to the latest version. Check the documentation for more information."
           } else if (data["using_automatic_latency_correction"] === false) {
-            this.info_bar = "Warning: your audio driver does not support inputBufferAdcTime and/or outputBufferDacTime. If you want automatic latency correction, please use an audio device with ASIO drivers. You must calibrate now to set the latency correctly."
+            this.info_bar = "Warning: your audio driver does not support inputBufferAdcTime and/or outputBufferDacTime. If you want automatic latency correction, please use an audio device with ASIO drivers. Check the documentation about configuring audio devices. You must calibrate now to set the latency correctly."
           } else {
             this.info_bar = "Ready."
           }

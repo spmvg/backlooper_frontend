@@ -55,28 +55,6 @@
           <tr>
             <td class="centered-col">
               <span style="font-size: 20pt">
-                LATENCY
-              </span>
-            </td>
-            <td class="left-aligned-col">
-              <span class="centered-span m-2">{{ Math.round(1000*latency) }} ms</span>
-              <button type="button"
-                      class="btn btn-lg btn-danger m-2"
-                      v-on:click="calibrate()"
-                      :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
-                CALIBRATE
-              </button>
-              <button type="button"
-                      class="btn btn-lg btn-dark m-2"
-                      v-on:click="view_calibration_help()">
-                HELP
-              </button>
-              <!-- TODO: latency correction using a slider? -->
-            </td>
-          </tr>
-          <tr>
-            <td class="centered-col">
-              <span style="font-size: 20pt">
                 CLICKTRACK VOLUME
               </span>
             </td>
@@ -161,10 +139,23 @@
           <tr>
             <td class="centered-col">
               <span style="font-size: 20pt">
-                LATENCY CALIBRATION DIAGRAM
+                LATENCY
               </span>
             </td>
             <td class="left-aligned-col">
+              <span class="centered-span m-2">{{ Math.round(1000*latency) }} ms</span>
+              <button type="button"
+                      class="btn btn-lg btn-danger m-2"
+                      v-on:click="calibrate()"
+                      :disabled="tracks.every(item => item['state'] == 'EMPTY') ? false : true">
+                CALIBRATE
+              </button>
+              <button type="button"
+                      class="btn btn-lg btn-dark m-2"
+                      v-on:click="view_calibration_help()">
+                HELP
+              </button>
+              <!-- TODO: latency correction using a slider? -->
               <button type="button"
                       class="btn btn-lg btn-dark m-2"
                       data-bs-toggle="collapse"

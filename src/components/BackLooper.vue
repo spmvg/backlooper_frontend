@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-12 my-1 px-2 rounded"
-         :style="(info_bar.includes('Error') || info_bar.startsWith('Latency has not been set. '))? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
+         :style="(info_bar.startsWith('Error') || info_bar.startsWith('Warning') || info_bar.startsWith('Connecting to backend...'))? 'background-color:rgb(100, 43, 43)' : 'background-color:rgb(43, 43, 43)'">
       <span style="font-size:20pt">STATUS <br></span>
       <span style="font-size:13pt">{{ info_bar }}</span>
     </div>
@@ -216,7 +216,7 @@
           'TRACK 8': [null, null]
         },
         last_midi: [null, null],
-        info_bar: 'Latency has not been set. Please perform calibration to synchronize the audio. Looping is not possible until calibration is successful. Click "HELP" below for more information.',
+        info_bar: 'Connecting to backend...',
         track_status_map: {
           EMPTY: "btn btn-lg btn-secondary m-2",
           TRIGGERED: "btn btn-lg btn-warning m-2",
@@ -349,11 +349,14 @@
         } else if (data["event"] == "clicktrack_volume") {
           this.clicktrack_volume = data["volume"] * 127
         } else if (data["event"] == "latency") {
-          this.info_bar = "Updated latency to " + Math.round(1000 * data["latency_seconds"]) + " ms."
           this.latency = data["latency_seconds"]
         } else if (data["event"] == "major_version") {
           if (this.major_version != data["message"]) {
             this.info_bar = "Error: this version of the backend on your local machine (v" + data["message"] + ") is outdated and incompatible with the frontend (v" + this.major_version + "). Please upgrade the backend to the latest version. Check the documentation for more information."
+          } else if (data["using_automatic_latency_correction"] === false) {
+            this.info_bar = "Warning: your audio driver does not support inputBufferAdcTime and/or outputBufferDacTime. If you want automatic latency correction, please use an audio device with ASIO drivers. You must calibrate now to set the latency correctly."
+          } else {
+            this.info_bar = "Ready."
           }
         } else {
           console.log('Unknown message from backend:', event)

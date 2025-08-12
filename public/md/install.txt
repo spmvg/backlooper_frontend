@@ -1,13 +1,5 @@
 # Installation
-The [releases published on GitHub](https://github.com/spmvg/backlooper_backend/releases) are the preferred installation method.
-
-Windows and macOS binaries are available.
-Alternatively, the following section describes how to install Backlooper.app as a Python package.
-
-## Development installation
-If you want to install backlooper for a development setup or on another platform, please continue reading.
-
-Backlooper.app consists of 2 parts: the frontend which runs in the browser and the backend which runs on your local machine.
+Backlooper.app consists of 2 parts: this frontend which runs in the browser and the backend which runs on your local machine.
 The [frontend](https://backlooper.app) will try to connect to the backend on your local machine.
 The backend is written in Python and can be started using
 

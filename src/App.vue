@@ -19,7 +19,7 @@
 </script>
 
 <style>
-@import 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap';
 
 #app {

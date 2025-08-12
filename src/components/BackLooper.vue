@@ -30,8 +30,7 @@
             <td class="left-aligned-col">
               <button type="button"
                       :class="track_status_map[track.state]"
-                      v-on:click="click_on_track(track)"
-                      :disabled="latency == 0 ? true : false">
+                      v-on:click="click_on_track(track)">
                 TRACK {{ track.track_id + 1 }}
               </button>
               <button type="button"

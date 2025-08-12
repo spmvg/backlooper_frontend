@@ -1,7 +1,7 @@
 # Resolving common issues
 
-* To **change the audio device**, adjust the default audio device of the operating system and restart the backend. The default audio device will be taken.
-  * On Windows, the audio device is configured in "Settings" → "System" → "Sound".
+* If the **latency** is intolerable, make sure you select an audio device with ASIO drivers.
+  For example, the audio device might show up as: "_Focusrite USB ASIO, ASIO (2 in, 2 out)_".
 * If the **audio device is unavailable**, there might be another application claiming the audio device.
 * If **calibration fails**, inspect the [latency calibration diagram](https://www.backlooper.app/docs/calibration). Make sure that the input receives enough signal from the output.
 * If the **backend cannot be reached**, check if the backend is running, no firewall is blocking the connection and make sure Javascript is allowed in the browser.

@@ -4,11 +4,21 @@ Backlooper.app loops audio without having to trigger beforehand.
 Audio is always being recorded.
 The last few bars will be played back if you select a track at approximately the first beat of the next bar.
 
-## Setup
-The [releases published on GitHub](https://github.com/spmvg/backlooper_backend/releases) are the preferred installation method.
+## Quickstart
+The backend is written in Python and can be started using
 
-Windows and macOS binaries are available.
-It is possible to install on other platforms as a Python package, please refer to the [installation instructions](https://backlooper.app/docs/install) for more information.
+```
+python -m backlooper
+```
+
+You have to choose which audio devices to use for input and output.
+ASIO drivers and an audio interface are highly recommended because of automatic latency correction.
+For example, the audio device might show up as: "_Focusrite USB ASIO, ASIO (2 in, 2 out)_".
+
+Finally, [frontend](https://backlooper.app) will be started in the browser.
+
+## Installation
+Please refer to the [installation instructions](https://backlooper.app/docs/install) for more information.
 
 ## Hardware
 An example setup with an audio interface and MIDI controller is as follows.

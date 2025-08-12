@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-11 col-md-8 col-lg-6 mx-auto p-2 m-2 md">
+    <div class="col-11 col-md-8 col-lg-6 mx-auto p-3 m-3 md">
       <span v-html="post"></span>
     </div>
   </div>
@@ -51,11 +51,11 @@ export default {
   }
 
   span >>> p {
-    font-family: "Lora", serif;
+    font-family: "Roboto", serif;
     font-size: 20px;
   }
   span >>> li {
-    font-family: "Lora", serif;
+    font-family: "Roboto", serif;
     font-size: 20px;
   }
   span >>> h1 {
@@ -77,7 +77,7 @@ export default {
     font-family: "Open Sans", sans-serif;
   }
   span >>> em {
-    font-family: "Lora", serif;
+    font-family: "Roboto", serif;
   }
   span >>> code {
     color: #fff;

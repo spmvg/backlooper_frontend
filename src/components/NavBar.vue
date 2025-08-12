@@ -15,13 +15,6 @@
               </RouterLink>
             </li>
             <li class="nav-item">
-              <a href="https://github.com/spmvg/backlooper_backend/releases"
-                 class="mx-1
-                 nav-link">
-                DOWNLOAD
-              </a>
-            </li>
-            <li class="nav-item">
               <RouterLink to="/docs/general"
                           class="mx-1
                           nav-link">
